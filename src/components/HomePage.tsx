@@ -45,7 +45,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
               <Github size={24} />
             </a>
             <a
-              href="https://www.linkedin.com/in/mohith-ram-narendra-babu"
+              href="https://www.linkedin.com/in/mohith-ram-narendra-babu/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-purple-400 transition-colors"
