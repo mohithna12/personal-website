@@ -3,28 +3,32 @@ import { Briefcase, GraduationCap, Award } from 'lucide-react';
 export function AboutPage() {
   const experiences = [
     {
-      title: 'Technology Team Member',
+      title: 'Data Consultant',
+      company: 'Maserati [Contract]',
+      period: 'February 2026 - Present',
+      description:
+        'Build benchmarking models across 15+ luxury brands to identify EV and pricing gaps and guide Maserati’s 5–10 year roadmap. Analyze 10K+ consumer reviews with NLP models to quantify perception gaps in innovation vs. heritage positioning, and automate dashboards tracking electrification, AI, and sustainability trends, cutting research time by 40% across teams.',
+    },
+    {
+      title: 'Software Engineer',
+      company: 'CKTH [Contract]',
+      period: 'February 2026 - Present',
+      description:
+        'Build 5 Next.js MVP pages (Calendar, Big Ups, Wallet, Profile, Onboarding) enabling navigation for 10+ user flows. Implement NestJS APIs and admin CRUD endpoints for Events and Locations to reliably support 1000+ records, integrate event tracking for saves, shares, and views, and write 20+ unit tests to reduce regression risk and improve staging release stability.',
+    },
+    {
+      title: 'Software Engineering Intern',
       company: 'Mustang Math',
       period: 'May 2025 - August 2025',
-      description: 'Contributed over 75 hours to software development projects, including building a comprehensive tutoring dashboard and an online competition platform. Designed and coded 4 dynamic web pages using Svelte framework, significantly enhancing user experience and platform scalability. Additionally, created a scheduling Discord bot using Python that streamlined internal planning processes and increased meeting efficiency by 50%.',
+      description:
+        'Built features for a tutoring dashboard and competition platform, implementing dynamic forms to support 1000+ users. Created and maintained 4 Svelte pages using reactive state and API fetching, reducing page load latency by 30%, and developed a Python Discord scheduling bot with auto-reminders and role tagging to cut coordination time by 40%.',
     },
     {
       title: 'Software Engineering Intern',
-      company: 'Kural Koodal Semmozhi Foundation',
-      period: 'May 2024 - September 2024',
-      description: 'Developed a full-stack web platform supporting over 1000 users for an art competition, enabling seamless registration, entry submissions, and result access. Built robust RESTful APIs and integrated Firebase database to handle real-time user data and submissions efficiently. Designed and implemented intuitive user interfaces for both judge and competitor portals using HTML, CSS, and JavaScript. Collaborated daily with 2 mentors and leveraged GitHub workflow to track progress and resolve issues 40% faster than previous methods.',
-    },
-    {
-      title: 'Software Engineering Intern',
-      company: 'Naibly',
-      period: 'September 2023 - May 2024',
-      description: 'Successfully integrated DALL·E AI image generation into a Flutter mobile application, creating over 500 custom event backgrounds for users. Configured Firebase backend infrastructure to store Nest camera inputs, scaling the system to handle 10,000+ records with query times under 200 milliseconds. Worked closely with a mentor and development partner in an agile environment, completing 100% of assigned goals on schedule while maintaining high code quality standards.',
-    },
-    {
-      title: 'Chief Technical Officer',
-      company: 'TiE Young Entrepreneurs Program',
-      period: 'September 2023 - May 2024',
-      description: 'Led the technical development of a mobile productivity application as CTO, managing a team of 3 developers and overseeing the entire software development lifecycle. Conducted extensive customer validation with over 500 users, iterating on features based on real user feedback and comprehensive analytics. Presented the product to judges in the final entrepreneurial round, successfully demonstrating a projected 10x revenue growth within 6 months of launch.',
+      company: 'Naibly: Mobile Application',
+      period: 'September 2024 - May 2025',
+      description:
+        'Integrated DALL·E image generation into a Flutter app to generate 500+ relevant and custom event backgrounds. Configured Firebase to store Nest camera inputs, scaling to 10K+ records with under 200ms query times, while collaborating in an agile workflow to complete 100% of assigned sprint goals on schedule.',
     },
   ];
 
@@ -78,7 +82,6 @@ export function AboutPage() {
             <div className="border-l-2 border-purple-600 pl-6 space-y-2">
               <h3 className="text-white">B.S. in Electrical Engineering & Computer Sciences</h3>
               <p className="text-purple-400">University of California, Berkeley</p>
-              <p className="text-gray-500">Graduation: May 2028</p>
               <div className="text-gray-400">
                 <p className="font-semibold mb-2">Relevant Coursework:</p>
                 <p>Structure & Interpretation of Computer Programs, Data Structures & Algorithms, Linear Algebra & Differential Equations, Multivariable Calculus, Discrete Math, Probability</p>

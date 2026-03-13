@@ -4,37 +4,26 @@ import { ExternalLink, Github } from 'lucide-react';
 export function ProjectsPage() {
   const projects = [
     {
+      title: 'GrandFLOW: Senior Care Platform',
+      description:
+        'Built a senior care platform using Next.js, TypeScript, and Supabase, integrating voice agents and health dashboards. Implemented real-time voice interaction with Whisper STT and Fish Audio TTS to enable natural AI conversations, and developed health and concierge dashboards with Supabase Realtime and role-based access, syncing 10+ wellness metrics. Designed an accessible UI with Tailwind and shadcn/ui to improve usability through large fonts and simplified navigation.',
+      technologies: ['Next.js', 'TypeScript', 'Supabase', 'Whisper', 'Tailwind', 'shadcn/ui'],
+      github: 'https://github.com/mohithna12',
+      demo: null,
+    },
+    {
+      title: 'Cue-Bot: Stream Assistant Tool',
+      description:
+        'Built a real-time eye-tracking system with OpenCV and MediaPipe to enable sub-200ms automatic camera switches for live streaming. Automated OBS scene control across 2 cameras using WebSocket APIs to eliminate manual switching during broadcasts, and reduced false camera switches by over 90% using debouncing and 10-frame stability checks under live streaming conditions.',
+      technologies: ['Python', 'OpenCV', 'MediaPipe', 'OBS WebSocket'],
+      github: 'https://github.com/mohithna12',
+      demo: null,
+    },
+    {
       title: 'Robotics Telemetry System',
-      description: 'Deployed a comprehensive Grafana telemetry system that tracks over 50 robot metrics across 10 sensors during testing phases. This real-time monitoring solution dramatically reduced autonomous debugging time from approximately 5 hours to less than 1.5 hours through live data visualization. Processed over 100,000 data points using Python and InfluxDB pipelines to optimize route efficiency and improve overall robot accuracy.',
+      description:
+        'Deployed a Grafana telemetry system tracking 50+ robot metrics across 10 sensors during field testing and validation. Reduced autonomous debugging time from roughly 5 hours to under 1.5 hours through real-time visualization dashboards, and processed over 100K data points via Python and InfluxDB pipelines to optimize route efficiency and navigation accuracy.',
       technologies: ['Python', 'InfluxDB', 'Grafana', 'Data Visualization'],
-      github: 'https://github.com/mohithna12',
-      demo: null,
-    },
-    {
-      title: 'Science Olympiad Event Scheduling System',
-      description: 'Built an intelligent scheduling system using Python and OR-Tools optimization algorithms to manage 80 club members across 23 competitive Science Olympiad events. The system automatically resolves scheduling conflicts and generates balanced event assignments, reducing pre-competition planning time from over 6 hours to less than 10 minutes. Deployed via Flask with SQLite database and integrated Plotly dashboards for interactive schedule visualization and team access.',
-      technologies: ['Python', 'Flask', 'SQLite', 'Plotly', 'OR-Tools'],
-      github: 'https://github.com/mohithna12',
-      demo: null,
-    },
-    {
-      title: 'Art Competition Platform',
-      description: 'Developed a full-stack web platform supporting over 1000 participants for a large-scale art competition, featuring comprehensive registration, entry submission, and result access capabilities. Implemented robust RESTful APIs and integrated Firebase database to handle real-time user data, submissions, and voting processes efficiently. Designed and built intuitive user interfaces for both judge and competitor portals using modern HTML, CSS, and JavaScript to ensure an excellent user experience.',
-      technologies: ['HTML', 'CSS', 'JavaScript', 'Firebase', 'REST APIs'],
-      github: 'https://github.com/mohithna12',
-      demo: null,
-    },
-    {
-      title: 'Flutter Event App with DALL·E Integration',
-      description: 'Integrated OpenAI\'s DALL·E image generation API into a Flutter mobile application to dynamically create over 500 custom event backgrounds based on user preferences and event themes. Configured comprehensive Firebase backend infrastructure to store and manage Nest camera inputs at scale, handling 10,000+ records with query response times consistently under 200 milliseconds. Implemented efficient data caching and optimization strategies to ensure smooth user experience across all device types.',
-      technologies: ['Flutter', 'Dart', 'Firebase', 'DALL·E API'],
-      github: 'https://github.com/mohithna12',
-      demo: null,
-    },
-    {
-      title: 'Mustang Math Tutoring Dashboard',
-      description: 'Designed and developed 4 dynamic, responsive web pages using Svelte framework to create a comprehensive tutoring dashboard for Mustang Math. Enhanced user experience and platform scalability through modern web technologies and responsive design principles. Created an intelligent scheduling Discord bot using Python that automated meeting coordination and increased team meeting efficiency by 50% by eliminating manual scheduling conflicts.',
-      technologies: ['Svelte', 'Python', 'Discord Bot'],
       github: 'https://github.com/mohithna12',
       demo: null,
     },
