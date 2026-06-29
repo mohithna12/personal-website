@@ -3,32 +3,32 @@ import { Briefcase, GraduationCap, Award } from 'lucide-react';
 export function AboutPage() {
   const experiences = [
     {
+      title: 'Software Development Engineering Intern',
+      company: 'Amazon Web Services (AWS) — Seattle, WA',
+      period: 'June 2026 - Present',
+      description:
+        'Build an AI assistant that translates natural-language queries into API workflows, reducing agreement lookup tickets by 45%. Engineer an LLM retrieval system integrating 5 internal APIs to surface agreement details and deep links in under 2 seconds, develop a benchmark suite of 10 support workflows that improves accuracy by 80%, and implement guardrails restricting agent actions to read-only APIs to ensure 100% compliance with data requirements.',
+    },
+    {
       title: 'Data Consultant',
-      company: 'Maserati [Contract]',
+      company: 'Maserati [Contract] — Berkeley, CA',
       period: 'February 2026 - Present',
       description:
         'Build benchmarking models across 15+ luxury brands to identify EV and pricing gaps and guide Maserati’s 5–10 year roadmap. Analyze 10K+ consumer reviews with NLP models to quantify perception gaps in innovation vs. heritage positioning, and automate dashboards tracking electrification, AI, and sustainability trends, cutting research time by 40% across teams.',
     },
     {
       title: 'Software Engineer',
-      company: 'CKTH [Contract]',
-      period: 'February 2026 - Present',
+      company: 'CKTH [Contract] — Berkeley, CA',
+      period: 'February 2026 - May 2026',
       description:
-        'Build 5 Next.js MVP pages (Calendar, Big Ups, Wallet, Profile, Onboarding) enabling navigation for 10+ user flows. Implement NestJS APIs and admin CRUD endpoints for Events and Locations to reliably support 1000+ records, integrate event tracking for saves, shares, and views, and write 20+ unit tests to reduce regression risk and improve staging release stability.',
+        'Build 5 Next.js MVP pages (Calendar, Big Ups, Wallet, Profile, Onboarding) enabling navigation for 10+ user flows. Implement NestJS APIs and admin CRUD endpoints for Events and Locations to reliably support 1000+ records, and write 20+ unit tests for frontend modules and APIs to reduce regression risk and improve staging release stability.',
     },
     {
-      title: 'Software Engineering Intern',
-      company: 'Mustang Math',
+      title: 'Software Engineer',
+      company: 'Mustang Math — Seattle, WA',
       period: 'May 2025 - August 2025',
       description:
-        'Built features for a tutoring dashboard and competition platform, implementing dynamic forms to support 1000+ users. Created and maintained 4 Svelte pages using reactive state and API fetching, reducing page load latency by 30%, and developed a Python Discord scheduling bot with auto-reminders and role tagging to cut coordination time by 40%.',
-    },
-    {
-      title: 'Software Engineering Intern',
-      company: 'Naibly: Mobile Application',
-      period: 'September 2024 - May 2025',
-      description:
-        'Integrated DALL·E image generation into a Flutter app to generate 500+ relevant and custom event backgrounds. Configured Firebase to store Nest camera inputs, scaling to 10K+ records with under 200ms query times, while collaborating in an agile workflow to complete 100% of assigned sprint goals on schedule.',
+        'Led development on a test problem management platform used by Stanford and Berkeley, actively serving 10K+ students. Created a scalable real-time collaborative testing system with a REST API, SvelteKit, and SQL used by 1.5K+ competitors, and optimized website content and UI/UX with lazy loading to support growth to 75K+ monthly active users.',
     },
   ];
 
@@ -46,12 +46,13 @@ export function AboutPage() {
           <div className="space-y-4 animate-fade-in-up-delay-1">
             <p className="text-gray-400">
               I'm a UC Berkeley EECS student passionate about building scalable applications and solving complex problems.
-              With experience across full-stack development, mobile apps, and real-time systems, I've delivered impactful
-              solutions serving 1000+ users.
+              With experience across full-stack development, AI systems, and real-time platforms, I've delivered impactful
+              solutions serving thousands of users.
             </p>
             <p className="text-gray-400">
-              When I'm not coding, you can find me contributing to open-source projects, building robotics systems, or
-              exploring the latest technologies in software development and systems engineering.
+              I'm currently a Software Development Engineering Intern at AWS, building LLM-powered retrieval systems. When
+              I'm not coding, you can find me building robotics systems or exploring the latest in AI/ML and software
+              engineering.
             </p>
           </div>
 
@@ -82,9 +83,10 @@ export function AboutPage() {
             <div className="border-l-2 border-purple-600 pl-6 space-y-2">
               <h3 className="text-white">B.S. in Electrical Engineering & Computer Sciences</h3>
               <p className="text-purple-400">University of California, Berkeley</p>
+              <p className="text-gray-500">Expected May 2028 · GPA: 3.5/4.0</p>
               <div className="text-gray-400">
                 <p className="font-semibold mb-2">Relevant Coursework:</p>
-                <p>Structure & Interpretation of Computer Programs, Data Structures & Algorithms, Linear Algebra & Differential Equations, Multivariable Calculus, Discrete Math, Probability</p>
+                <p>Structure & Interpretation of Computer Programs in Python, Data Structures & Algorithms, Linear Algebra, Differential Equations, Discrete Math, Probability Theory, Signals, Systems & Information Processing</p>
               </div>
             </div>
           </div>

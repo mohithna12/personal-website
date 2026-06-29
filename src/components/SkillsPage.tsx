@@ -5,17 +5,17 @@ export function SkillsPage() {
     {
       icon: Code2,
       title: 'Languages',
-      skills: ['Python', 'JavaScript', 'HTML', 'CSS', 'Dart', 'Java', 'SQL', 'C++'],
+      skills: ['Python', 'JavaScript', 'TypeScript', 'HTML', 'CSS', 'Dart', 'Java', 'SQL', 'C++', 'C#', 'Kotlin'],
     },
     {
       icon: Wrench,
-      title: 'Tools & Frameworks',
-      skills: ['React', 'Svelte', 'Firebase', 'Flask', 'InfluxDB', 'Grafana', 'Git/Github', 'Excel', 'Google Sheets'],
+      title: 'Frameworks & Databases',
+      skills: ['React', 'Svelte', 'Next.js', 'Node.js', 'Firebase', 'Supabase', 'REST APIs', 'PostgreSQL', 'MongoDB', 'CI/CD'],
     },
     {
       icon: Database,
-      title: 'Systems & Databases',
-      skills: ['Firebase', 'SQLite', 'InfluxDB', 'REST APIs', 'OR-Tools', 'Data Visualization'],
+      title: 'Tools',
+      skills: ['Git/Github', 'Kubernetes', 'Docker', 'Redis', 'Vercel', 'AWS', 'GCP', 'JUnit', 'Vite', 'Postman'],
     },
     {
       icon: Globe,
