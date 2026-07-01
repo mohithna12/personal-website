@@ -85,7 +85,7 @@ export function ContactPage() {
                     <Github size={20} />
                   </a>
                   <a
-                    href="https://www.linkedin.com/in/mohithna12"
+                    href="https://www.linkedin.com/in/mohith-ram-narendra-babu"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 bg-purple-600/20 border border-purple-900/30 rounded-lg text-purple-400 hover:bg-purple-600/30 transition-colors"
