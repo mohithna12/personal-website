@@ -16,7 +16,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
           </div>
 
           <p className="text-gray-400 max-w-2xl animate-fade-in-up-delay-1">
-           Software Engineer | Full-Stack Development
+           Engineer &amp; Builder | Shipping Products End to End
           </p>
 
           <div className="flex flex-wrap gap-4 animate-fade-in-up-delay-2">

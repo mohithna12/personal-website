@@ -12,9 +12,9 @@ export function AboutPage() {
     {
       title: 'Data Consultant',
       company: 'Maserati [Contract] — Berkeley, CA',
-      period: 'February 2026 - Present',
+      period: 'February 2026 - July 2026',
       description:
-        'Build benchmarking models across 15+ luxury brands to identify EV and pricing gaps and guide Maserati’s 5–10 year roadmap. Analyze 10K+ consumer reviews with NLP models to quantify perception gaps in innovation vs. heritage positioning, and automate dashboards tracking electrification, AI, and sustainability trends, cutting research time by 40% across teams.',
+        'Authored a software-defined ownership strategy for Maserati’s Folgore EVs by synthesizing competitive and feasibility analysis, and framed a 5–10 year software-defined roadmap by benchmarking 15+ luxury and EV brands on OTA, pricing, and services. Cut research time by 40% via a 30-month roadmap with gating KPIs (80%+ OTA adoption, +10 NPS) and an ROI model, and surfaced perception gaps by running NLP on 10K+ consumer reviews to convert findings into positioning guidance.',
     },
     {
       title: 'Software Engineer',
