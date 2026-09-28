@@ -28,10 +28,19 @@ export function AboutPage() {
    *
    * DRAFT COPY — the one-line summaries below are condensed rewrites; review.
    *
-   * TODO(mohith): Fortinet is not currently on the site at all. Send me the
-   * role title, dates, and bullets and I'll add it to this group.
+   * Fortinet is sourced from SWEResume_Mohith_Ram_Narendra_Babu(1).pdf. Its
+   * summary deliberately omits the resume's batch-inference/parallelization
+   * bullet, which would read as systems positioning.
    */
   const contractWork = [
+    {
+      title: 'Technical Consultant',
+      company: 'Fortinet',
+      location: 'Berkeley, CA',
+      period: 'August 2026 - Present',
+      summary:
+        'Built ranking pipelines scoring 100K+ accounts on funding, hiring, and sector-growth signals, and a monitoring platform on FastAPI, PostgreSQL, and React analytics that cut reporting time 60%.',
+    },
     {
       title: 'Data Consultant',
       company: 'Maserati',

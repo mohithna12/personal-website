@@ -10,8 +10,9 @@ import { ROUTE_META } from '../site';
  * or no dedicated repo/demo URL, there is a TODO below rather than an invented
  * number or link.
  *
- * TODO(mohith): `github` for all three projects currently points at the profile
- * root, not a repository. Replace with the real repo URLs.
+ * TODO(mohith): Robotics Telemetry has no public repo — Exo10A/High-Stakes-24-25
+ * returns 404 from the GitHub API. Its Code link is hidden until you make the
+ * repo public or point it somewhere else.
  * TODO(mohith): no demo/deployment links exist for any project. Add `demo` URLs
  * where one exists, otherwise the Demo link stays hidden.
  */
@@ -30,7 +31,8 @@ export function ProjectsPage() {
       results: ['Syncs 10+ wellness metrics across health and concierge dashboards.'],
       // TODO(mohith): no adoption/usage metric published for this project — add one if you have it.
       technologies: ['Next.js', 'TypeScript', 'Supabase', 'Whisper', 'Tailwind', 'shadcn/ui'],
-      github: 'https://github.com/mohithna12',
+      // Repo lives under a collaborator's account, not mohithna12.
+      github: 'https://github.com/angadsingharora/GrandFLOW',
       demo: null,
     },
     {
@@ -48,7 +50,7 @@ export function ProjectsPage() {
         'Over 90% fewer false camera switches under live streaming conditions.',
       ],
       technologies: ['Python', 'OpenCV', 'MediaPipe', 'OBS WebSocket'],
-      github: 'https://github.com/mohithna12',
+      github: 'https://github.com/mohithna12/cue-bot',
       demo: null,
     },
     {
@@ -66,7 +68,7 @@ export function ProjectsPage() {
         'Over 100K data points processed during field testing and validation.',
       ],
       technologies: ['Python', 'InfluxDB', 'Grafana', 'Data Visualization'],
-      github: 'https://github.com/mohithna12',
+      github: null,
       demo: null,
     },
   ];
@@ -145,6 +147,7 @@ export function ProjectsPage() {
 
                 {/* Links */}
                 <div className="flex gap-4 pt-2">
+                  {project.github && (
                   <a
                     href={project.github}
                     target="_blank"
@@ -155,6 +158,7 @@ export function ProjectsPage() {
                     <Github size={18} aria-hidden="true" />
                     <span>Code</span>
                   </a>
+                  )}
                   {project.demo && (
                     <a
                       href={project.demo}
