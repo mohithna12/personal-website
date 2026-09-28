@@ -1,7 +1,11 @@
 /**
- * Single source of truth for site-wide metadata (canonical URL, social links,
- * per-route titles/descriptions). Used by the <Seo> component and by the
- * sitemap/robots/JSON-LD generation at build time.
+ * Single source of truth for site metadata (canonical URL, social links, the
+ * page title/description). Used by <Seo> and by the sitemap/robots generation
+ * at build time.
+ *
+ * Framing here is deliberately neutral — student + software engineer — and
+ * must stay that way even though the project catalog includes lower-level
+ * work. No systems/inference/hardware positioning in meta, OG, or schema.
  */
 
 export const SITE_URL = 'https://mohithn.dev';
@@ -11,59 +15,23 @@ export const PERSON = {
   jobTitle: 'Software Engineer',
   github: 'https://github.com/mohithna12',
   linkedin: 'https://www.linkedin.com/in/mohith-ram-narendra-babu',
-  email: 'mohithramn@outlook.com',
+  email: 'mohithn@berkeley.edu',
   alumniOf: 'University of California, Berkeley',
-  resume: '/resume.pdf',
 } as const;
 
 export const OG_IMAGE = `${SITE_URL}/og.png`;
 
-/**
- * DRAFT COPY — flagged for review.
- * Neutral description: student + software engineer, no specialization claim.
- */
-export const DEFAULT_DESCRIPTION =
+/** DRAFT COPY — neutral, ~150 chars, no specialization claim. */
+export const DESCRIPTION =
   'Mohith Ram Narendra Babu is a UC Berkeley EECS student and software engineer who builds full-stack web applications, from interface to backend.';
 
-export type RouteMeta = {
-  path: string;
-  title: string;
-  description: string;
+export const PAGE_META = {
+  path: '/',
+  title: `${PERSON.name} — ${PERSON.jobTitle}`,
+  description: DESCRIPTION,
 };
 
-export const ROUTE_META: Record<string, RouteMeta> = {
-  home: {
-    path: '/',
-    title: `${PERSON.name} — ${PERSON.jobTitle}`,
-    description: DEFAULT_DESCRIPTION,
-  },
-  about: {
-    path: '/about',
-    title: `About — ${PERSON.name}`,
-    description:
-      'About Mohith Ram Narendra Babu: UC Berkeley EECS student and software engineer, with experience across web applications, APIs, and data platforms.',
-  },
-  projects: {
-    path: '/projects',
-    title: `Projects — ${PERSON.name}`,
-    description:
-      'Projects by Mohith Ram Narendra Babu, a UC Berkeley EECS student and software engineer, spanning web platforms, real-time tools, and data pipelines.',
-  },
-  skills: {
-    path: '/skills',
-    title: `Skills — ${PERSON.name}`,
-    description:
-      'Technical skills of Mohith Ram Narendra Babu, a UC Berkeley EECS student and software engineer: languages, frameworks, databases, and developer tools.',
-  },
-  contact: {
-    path: '/contact',
-    title: `Contact — ${PERSON.name}`,
-    description:
-      'Get in touch with Mohith Ram Narendra Babu, a UC Berkeley EECS student and software engineer, about opportunities, projects, or collaboration.',
-  },
-};
-
-/** JSON-LD Person schema, emitted once on the home page. */
+/** JSON-LD Person schema. */
 export const personJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',

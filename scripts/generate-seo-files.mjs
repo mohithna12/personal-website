@@ -4,7 +4,7 @@
  * Routes are derived from the HTML files vite-react-ssg actually emitted, so
  * the sitemap can never list a URL that wasn't prerendered.
  */
-import { readdirSync, writeFileSync, readFileSync, statSync } from 'node:fs';
+import { readdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const SITE_URL = 'https://mohithn.dev';
@@ -60,10 +60,3 @@ writeFileSync(join(BUILD_DIR, 'robots.txt'), robots);
 
 console.log(`[seo] sitemap.xml written with ${routes.length} routes: ${routes.join(', ')}`);
 console.log('[seo] robots.txt written');
-
-// Warn loudly if the resume link in the UI has no file behind it.
-try {
-  statSync(join(BUILD_DIR, 'resume.pdf'));
-} catch {
-  console.warn('[seo] WARNING: build/resume.pdf is missing — the Resume links in the nav and hero will 404.');
-}

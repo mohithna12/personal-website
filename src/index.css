@@ -1,105 +1,192 @@
 @import "tailwindcss";
-@import "./styles/globals.css";
 
-/* Animation keyframes */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* ---------------------------------------------------------------------------
+   Fonts — self-hosted so there is no render-blocking request to a third party
+   and no layout shift. Space Grotesk ships as a variable font (one file covers
+   400-700); Space Mono needs one file per weight.
+   --------------------------------------------------------------------------- */
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('/fonts/space-grotesk-var.woff2') format('woff2-variations');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Space Mono';
+  src: url('/fonts/space-mono-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Space Mono';
+  src: url('/fonts/space-mono-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
-@keyframes progress {
-  from {
-    width: 0%;
+@theme {
+  --font-sans: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Contrast on #000, measured: fg 21:1, lt 14.17:1, mid 6.49:1, accent 5.31:1.
+     All clear WCAG AA for normal text. */
+  --color-bg: #000000;
+  --color-fg: #ffffff;
+  --color-lt: #d4d4d4;
+  --color-mid: #8b9090;
+  --color-accent: #a855f7;
+  --color-hairline: rgba(212, 212, 212, 0.15);
+}
+
+@layer base {
+  html {
+    background-color: var(--color-bg);
+    /* Anchor nav must not tuck headings under the fixed bar. */
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
   }
-  to {
-    width: 100%;
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-lt);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
   }
-}
 
-@keyframes slideIn {
-  from {
-    left: -100%;
-  }
-  to {
-    left: 100%;
-  }
-}
-
-/* Fade-up animation classes */
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
-  opacity: 0;
-}
-
-.animate-fade-in-up-delay-1 {
-  animation: fadeInUp 0.6s ease-out 0.1s forwards;
-  opacity: 0;
-}
-
-.animate-fade-in-up-delay-2 {
-  animation: fadeInUp 0.6s ease-out 0.2s forwards;
-  opacity: 0;
-}
-
-.animate-fade-in-up-delay-3 {
-  animation: fadeInUp 0.6s ease-out 0.3s forwards;
-  opacity: 0;
-}
-
-.animate-fade-in-up-delay-4 {
-  animation: fadeInUp 0.6s ease-out 0.4s forwards;
-  opacity: 0;
-}
-
-/* Progress bar animation */
-.progress-bar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  width: 100%;
-  background: linear-gradient(to right, rgba(147, 51, 234, 0.5), rgb(147, 51, 234));
-  animation: progress 1.5s ease-out forwards;
-}
-
-/* Animated speck animation */
-@keyframes floatDown {
-  0% {
-    transform: translateY(-100vh) translateX(0);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh) translateX(100px);
-    opacity: 0;
+  * {
+    border-color: var(--color-hairline);
   }
 }
 
-.animated-speck {
-  position: absolute;
-  top: -10px;
-  border-radius: 50%;
-  background-color: rgba(192, 132, 252, 0.8);
-  animation: floatDown ease-in-out infinite;
-}
-
-
-/* Visible keyboard focus. Only renders for keyboard users (:focus-visible),
-   so mouse interaction looks exactly as before. The :is() wrapper raises
-   specificity above Tailwind's `focus:outline-none` utility. */
+/* Visible keyboard focus. :is() raises specificity above Tailwind's
+   focus:outline-none utilities. */
 :is(a, button, input, textarea, select, [tabindex]):focus-visible {
-  outline: 2px solid #c084fc;
-  outline-offset: 2px;
-  border-radius: 2px;
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* ---------------------------------------------------------------------------
+   Scroll reveal. Nothing is hidden by CSS alone: JavaScript adds
+   .reveal-armed only to elements it has measured as being below the fold.
+   If JS is disabled, the observer fails, or the script never runs, no element
+   is ever armed and the whole page renders at full opacity.
+   --------------------------------------------------------------------------- */
+.reveal-armed {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.reveal-armed.is-visible {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+/* Run-widget step reveal */
+.step {
+  opacity: 0.25;
+  transition: opacity 0.3s ease-out;
+}
+
+.step.is-active {
+  opacity: 1;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+.is-running .run-dot {
+  animation: blink 0.8s steps(2, start) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  /* Disable motion, but never hide content. */
+  .reveal-armed,
+  .reveal-armed.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .step {
+    opacity: 1;
+    transition: none;
+  }
+
+  .is-running .run-dot {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Run widget. Panel switching is pure CSS via :has(), so the selector works
+   with JavaScript disabled and keyboard support comes free from native radios.
+   --------------------------------------------------------------------------- */
+
+/* Active chip */
+.proj-chip:has(input:checked) {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* The radio is sr-only, so surface its focus ring on the chip. */
+.proj-chip:has(input:focus-visible) {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Show only the selected project's panel. */
+.run-panel {
+  display: none;
+}
+.run-widget:has(#proj-grandflow:checked) .run-panel-grandflow,
+.run-widget:has(#proj-cue-bot:checked) .run-panel-cue-bot,
+.run-widget:has(#proj-robotics-telemetry:checked) .run-panel-robotics-telemetry {
+  display: block;
+}
+
+/* Fallback for browsers without :has() — show the first panel rather than none. */
+@supports not selector(:has(*)) {
+  .run-panel {
+    display: block;
+  }
+}
+
+/* The RUN button does nothing without JS, so only show it when JS is present. */
+.run-btn {
+  display: none;
+}
+.js .run-btn {
+  display: inline-flex;
+}
+
+/* Steps read at full strength by default (and with JS off). They only dim
+   while a run is actually playing. */
+.step {
+  opacity: 1;
+}
+.is-running .step {
+  opacity: 0.25;
+}
+.is-running .step.is-active {
+  opacity: 1;
 }

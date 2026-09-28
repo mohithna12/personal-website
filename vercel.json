@@ -2,5 +2,11 @@
   "buildCommand": "npm run build",
   "outputDirectory": "build",
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/about", "destination": "/#experience", "permanent": true },
+    { "source": "/projects", "destination": "/#work", "permanent": true },
+    { "source": "/skills", "destination": "/#work", "permanent": true },
+    { "source": "/contact", "destination": "/#contact", "permanent": true }
+  ]
 }
