@@ -8,9 +8,12 @@ export function AboutPage() {
     {
       title: 'Software Development Engineering Intern',
       company: 'Amazon Web Services (AWS) — Seattle, WA',
-      period: 'June 2026 - Present',
+      period: 'June 2026 - August 2026',
+      // DRAFT COPY — rewritten from SWEResume_Mohith_Ram_Narendra_Babu(1).pdf.
+      // Past tense now that the role has ended; metrics are that resume's, which
+      // differ from the ones the site previously carried.
       description:
-        'Build an AI assistant that translates natural-language queries into API workflows, reducing agreement lookup tickets by 45%. Engineer an LLM retrieval system integrating 5 internal APIs to surface agreement details and deep links in under 2 seconds, develop a benchmark suite of 10 support workflows that improves accuracy by 80%, and implement guardrails restricting agent actions to read-only APIs to ensure 100% compliance with data requirements.',
+        'Cut agreement lookup time to under 2 seconds by replacing manual search with a Python Bedrock agent mapping queries to 5 APIs. Caught 80% of regressions pre-deployment by replaying 61 labeled queries across 10 workflows with a benchmark harness, eliminated write risk with a read-only API allowlist that rejected non-GET calls pre-dispatch and enforced it with 22 tests, and reduced lookup tickets 45% across 5 teams by shipping retrieval and API-orchestration workflows on Linux hosts.',
     },
     {
       title: 'Software Engineer',
@@ -77,10 +80,14 @@ export function AboutPage() {
               With experience across full-stack development, AI systems, and real-time platforms, I've delivered impactful
               solutions serving thousands of users.
             </p>
+            {/* DRAFT COPY — was "I'm currently a Software Development Engineering
+                Intern at AWS". The AWS internship ended August 2026, so the
+                present tense contradicted the dates below. Past tense only;
+                no new claims added. */}
             <p className="text-gray-400">
-              I'm currently a Software Development Engineering Intern at AWS, building LLM-powered retrieval systems. When
-              I'm not coding, you can find me building robotics systems or exploring the latest in AI/ML and software
-              engineering.
+              I most recently interned as a Software Development Engineer at AWS, building LLM-powered retrieval
+              systems. When I'm not coding, you can find me building robotics systems or exploring the latest in AI/ML
+              and software engineering.
             </p>
           </div>
 

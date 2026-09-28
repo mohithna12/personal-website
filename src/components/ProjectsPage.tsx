@@ -5,70 +5,75 @@ import { ROUTE_META } from '../site';
 /**
  * Each project reads as a mini case study: problem -> key decisions -> result.
  *
- * Every figure under `results` is taken verbatim from the copy that was already
- * on this page. No metric here is new. Where a project has no published metric
- * or no dedicated repo/demo URL, there is a TODO below rather than an invented
- * number or link.
+ * Sourced from SWEResume_Mohith_Ram_Narendra_Babu(1).pdf, in that resume's
+ * order (reverse-chronological: Aug 2026, Jul 2026, Nov 2025). Every figure
+ * under `results` is taken verbatim from those bullets. No metric is invented.
  *
- * TODO(mohith): Robotics Telemetry has no public repo — Exo10A/High-Stakes-24-25
- * returns 404 from the GitHub API. Its Code link is hidden until you make the
- * repo public or point it somewhere else.
- * TODO(mohith): no demo/deployment links exist for any project. Add `demo` URLs
- * where one exists, otherwise the Demo link stays hidden.
+ * Note: this set replaces Cue-Bot and Robotics Telemetry, and reintroduces the
+ * systems/inference framing that earlier site copy deliberately avoided. That
+ * was an explicit decision; the neutral meta descriptions, OG image, and
+ * JSON-LD in src/site.ts were left unchanged.
+ *
+ * TODO(mohith): GPT-2 Inference Engine has no repo I could find — it is not
+ * among your public repos and has no local clone. Its Code link stays hidden
+ * until you give me a URL.
+ * TODO(mohith): no demo/deployment links exist for any project. Add `demo`
+ * URLs where one exists, otherwise the Demo link stays hidden.
  */
 export function ProjectsPage() {
   const projects = [
     {
-      title: 'GrandFLOW: Senior Care Platform',
-      // DRAFT COPY — problem statement inferred from the existing description.
+      title: 'Kalshi Mispricing Engine',
+      // DRAFT COPY — problem statement inferred from the resume bullets.
+      problem:
+        'Mispricings in NFL prediction markets are only actionable if order-book updates are processed as fast as they arrive.',
+      decisions: [
+        'Ingested order-book updates over WebSocket through a concurrent Tokio pipeline with lock-free async channels.',
+        'Flagged candidates by comparing live prices against win probabilities and surfacing deviations beyond 2 sigma.',
+        'Backtested the strategy against historical games, modeling transaction fees and slippage.',
+      ],
+      results: [
+        'Ingests 12K+ NFL order-book updates per second.',
+        'Surfaces 80+ candidate mispricings per week.',
+        '14.7% simulated return across 1,200 historical games.',
+      ],
+      technologies: ['Rust', 'Tokio', 'WebSockets'],
+      github: 'https://github.com/mohithna12/kalshi-alpha',
+      demo: null,
+    },
+    {
+      title: 'GPT-2 Inference Engine',
+      // DRAFT COPY — problem statement inferred from the resume bullets.
+      problem:
+        'Running GPT-2 locally normally means pulling in a full ML framework and the dependency stack that comes with it.',
+      decisions: [
+        'Implemented GPT-2 inference in C++17 with zero ML-framework dependencies.',
+        'Applied KV caching, cache-blocked GEMM kernels, and multithreaded attention across 8 cores.',
+        'Built an automated differential-testing harness to check outputs against a reference implementation.',
+      ],
+      results: [
+        '42 tokens/second on CPU.',
+        'Per-token latency cut 61%.',
+        'Logits within 1e-4 of HuggingFace outputs across 100 prompts.',
+      ],
+      technologies: ['C++17', 'Multithreading'],
+      github: null,
+      demo: null,
+    },
+    {
+      title: 'GrandFLOW: Senior Care Assistant',
+      // DRAFT COPY — problem statement inferred from the resume bullets.
       problem:
         'Senior care depends on tools that are hard to navigate and on wellness data spread across disconnected sources.',
       decisions: [
-        'Built real-time voice interaction with Whisper STT and Fish Audio TTS to enable natural AI conversations.',
-        'Used Supabase Realtime with role-based access for the health and concierge dashboards.',
-        'Designed the UI with Tailwind and shadcn/ui around large fonts and simplified navigation for accessibility.',
+        'Built the platform on Next.js, TypeScript, and Supabase, integrating voice agents and health dashboards.',
+        'Implemented real-time voice interaction with Whisper STT and Fish Audio TTS for natural AI conversations.',
+        'Developed health and concierge dashboards with Supabase Realtime and role-based access.',
       ],
       results: ['Syncs 10+ wellness metrics across health and concierge dashboards.'],
-      // TODO(mohith): no adoption/usage metric published for this project — add one if you have it.
-      technologies: ['Next.js', 'TypeScript', 'Supabase', 'Whisper', 'Tailwind', 'shadcn/ui'],
+      technologies: ['Next.js', 'TypeScript', 'Supabase'],
       // Repo lives under a collaborator's account, not mohithna12.
       github: 'https://github.com/angadsingharora/GrandFLOW',
-      demo: null,
-    },
-    {
-      title: 'Cue-Bot: Stream Assistant Tool',
-      // DRAFT COPY — problem statement inferred from the existing description.
-      problem:
-        'Live streams with multiple cameras require constant manual scene switching while broadcasting.',
-      decisions: [
-        'Built a real-time eye-tracking system with OpenCV and MediaPipe to drive camera selection.',
-        'Automated OBS scene control across 2 cameras through the WebSocket API.',
-        'Added debouncing and 10-frame stability checks to suppress spurious switches.',
-      ],
-      results: [
-        'Sub-200ms automatic camera switches during live streaming.',
-        'Over 90% fewer false camera switches under live streaming conditions.',
-      ],
-      technologies: ['Python', 'OpenCV', 'MediaPipe', 'OBS WebSocket'],
-      github: 'https://github.com/mohithna12/cue-bot',
-      demo: null,
-    },
-    {
-      title: 'Robotics Telemetry System',
-      // DRAFT COPY — problem statement inferred from the existing description.
-      problem:
-        'Debugging autonomous runs during field testing meant sifting through raw logs with no live view of robot state.',
-      decisions: [
-        'Deployed a Grafana telemetry system covering 50+ robot metrics across 10 sensors.',
-        'Built Python and InfluxDB pipelines to ingest and process field-test data.',
-        'Surfaced route efficiency and navigation accuracy through real-time dashboards.',
-      ],
-      results: [
-        'Autonomous debugging time cut from roughly 5 hours to under 1.5 hours.',
-        'Over 100K data points processed during field testing and validation.',
-      ],
-      technologies: ['Python', 'InfluxDB', 'Grafana', 'Data Visualization'],
-      github: null,
       demo: null,
     },
   ];
@@ -82,9 +87,11 @@ export function ProjectsPage() {
           <div className="space-y-4 animate-fade-in-up">
             <h1 className="text-4xl md:text-5xl text-white">Projects</h1>
             <div className="w-20 h-1 bg-purple-600"></div>
+            {/* DRAFT COPY — the previous blurb described "full-stack development,
+                mobile apps, data systems", which no longer matches this set. */}
             <p className="text-gray-400 max-w-2xl">
-              A collection of projects showcasing my skills in full-stack development,
-              mobile apps, data systems, and problem-solving across diverse domains.
+              A collection of projects spanning real-time data pipelines, systems programming, and full-stack
+              application development.
             </p>
           </div>
 
@@ -148,16 +155,16 @@ export function ProjectsPage() {
                 {/* Links */}
                 <div className="flex gap-4 pt-2">
                   {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${project.title} source code on GitHub`}
-                    className="flex items-center gap-2 text-gray-400 hover:text-purple-400 transition-colors"
-                  >
-                    <Github size={18} aria-hidden="true" />
-                    <span>Code</span>
-                  </a>
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${project.title} source code on GitHub`}
+                      className="flex items-center gap-2 text-gray-400 hover:text-purple-400 transition-colors"
+                    >
+                      <Github size={18} aria-hidden="true" />
+                      <span>Code</span>
+                    </a>
                   )}
                   {project.demo && (
                     <a
