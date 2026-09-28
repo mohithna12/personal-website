@@ -1,6 +1,9 @@
-import { Briefcase, GraduationCap, Award } from 'lucide-react';
+import { Briefcase, GraduationCap } from 'lucide-react';
+import { Seo } from './Seo';
+import { ROUTE_META } from '../site';
 
 export function AboutPage() {
+  /** Full-length entries: AWS and Mustang Math keep their original copy. */
   const experiences = [
     {
       title: 'Software Development Engineering Intern',
@@ -8,20 +11,6 @@ export function AboutPage() {
       period: 'June 2026 - Present',
       description:
         'Build an AI assistant that translates natural-language queries into API workflows, reducing agreement lookup tickets by 45%. Engineer an LLM retrieval system integrating 5 internal APIs to surface agreement details and deep links in under 2 seconds, develop a benchmark suite of 10 support workflows that improves accuracy by 80%, and implement guardrails restricting agent actions to read-only APIs to ensure 100% compliance with data requirements.',
-    },
-    {
-      title: 'Data Consultant',
-      company: 'Maserati [Contract] — Berkeley, CA',
-      period: 'February 2026 - July 2026',
-      description:
-        'Authored a software-defined ownership strategy for Maserati’s Folgore EVs by synthesizing competitive and feasibility analysis, and framed a 5–10 year software-defined roadmap by benchmarking 15+ luxury and EV brands on OTA, pricing, and services. Cut research time by 40% via a 30-month roadmap with gating KPIs (80%+ OTA adoption, +10 NPS) and an ROI model, and surfaced perception gaps by running NLP on 10K+ consumer reviews to convert findings into positioning guidance.',
-    },
-    {
-      title: 'Software Engineer',
-      company: 'CKTH [Contract] — Berkeley, CA',
-      period: 'February 2026 - May 2026',
-      description:
-        'Build 5 Next.js MVP pages (Calendar, Big Ups, Wallet, Profile, Onboarding) enabling navigation for 10+ user flows. Implement NestJS APIs and admin CRUD endpoints for Events and Locations to reliably support 1000+ records, and write 20+ unit tests for frontend modules and APIs to reduce regression risk and improve staging release stability.',
     },
     {
       title: 'Software Engineer',
@@ -32,8 +21,38 @@ export function AboutPage() {
     },
   ];
 
+  /**
+   * Contract roles, grouped so they read as breadth without crowding the page.
+   * Each summary is condensed from the full description that was previously on
+   * this page — no new claims, no new numbers.
+   *
+   * DRAFT COPY — the one-line summaries below are condensed rewrites; review.
+   *
+   * TODO(mohith): Fortinet is not currently on the site at all. Send me the
+   * role title, dates, and bullets and I'll add it to this group.
+   */
+  const contractWork = [
+    {
+      title: 'Data Consultant',
+      company: 'Maserati',
+      location: 'Berkeley, CA',
+      period: 'February 2026 - July 2026',
+      summary:
+        'Authored a software-defined ownership strategy for the Folgore EVs, benchmarking 15+ luxury and EV brands and running NLP on 10K+ consumer reviews to cut research time by 40%.',
+    },
+    {
+      title: 'Software Engineer',
+      company: 'CKTH',
+      location: 'Berkeley, CA',
+      period: 'February 2026 - May 2026',
+      summary:
+        'Built 5 Next.js MVP pages and NestJS admin CRUD APIs supporting 1000+ records, with 20+ unit tests to improve staging release stability.',
+    },
+  ];
+
   return (
     <div className="min-h-screen pt-24 pb-16 px-6">
+      <Seo meta={ROUTE_META.about} />
       <div className="max-w-4xl mx-auto">
         <div className="space-y-12">
           {/* Header */}
@@ -59,7 +78,7 @@ export function AboutPage() {
           {/* Experience */}
           <div className="space-y-6 animate-fade-in-up-delay-2">
             <div className="flex items-center gap-3">
-              <Briefcase className="text-purple-400" size={24} />
+              <Briefcase className="text-purple-400" size={24} aria-hidden="true" />
               <h2 className="text-2xl text-white">Experience</h2>
             </div>
             <div className="space-y-6">
@@ -67,26 +86,45 @@ export function AboutPage() {
                 <div key={index} className="border-l-2 border-purple-600 pl-6 space-y-2">
                   <h3 className="text-white">{exp.title}</h3>
                   <p className="text-purple-400">{exp.company}</p>
-                  <p className="text-gray-500">{exp.period}</p>
+                  <p className="text-gray-400">{exp.period}</p>
                   <p className="text-gray-400">{exp.description}</p>
                 </div>
               ))}
+
+              {/* Contract work — compact group */}
+              <div className="border-l-2 border-purple-600 pl-6 space-y-4">
+                <h3 className="text-white">Contract work</h3>
+                <div className="space-y-4">
+                  {contractWork.map((role, index) => (
+                    <div key={index} className="space-y-1">
+                      <p className="text-white">
+                        {role.title} ·{' '}
+                        <span className="text-purple-400">{role.company}</span>
+                      </p>
+                      <p className="text-gray-400">
+                        {role.location} · {role.period}
+                      </p>
+                      <p className="text-gray-400">{role.summary}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Education */}
           <div className="space-y-6 animate-fade-in-up-delay-3">
             <div className="flex items-center gap-3">
-              <GraduationCap className="text-purple-400" size={24} />
+              <GraduationCap className="text-purple-400" size={24} aria-hidden="true" />
               <h2 className="text-2xl text-white">Education</h2>
             </div>
             <div className="border-l-2 border-purple-600 pl-6 space-y-2">
               <h3 className="text-white">B.S. in Electrical Engineering & Computer Sciences</h3>
               <p className="text-purple-400">University of California, Berkeley</p>
-              <p className="text-gray-500">Expected May 2028 · GPA: 3.5/4.0</p>
+              <p className="text-gray-400">Expected May 2028 · GPA: 3.5/4.0</p>
               <div className="text-gray-400">
                 <p className="font-semibold mb-2">Relevant Coursework:</p>
-                <p>Structure & Interpretation of Computer Programs in Python, Data Structures & Algorithms, Linear Algebra, Differential Equations, Discrete Math, Probability Theory, Signals, Systems & Information Processing</p>
+                <p>Structure &amp; Interpretation of Computer Programs in Python, Data Structures &amp; Algorithms, Linear Algebra, Differential Equations, Discrete Math, Probability Theory, Signals, Systems &amp; Information Processing</p>
               </div>
             </div>
           </div>

@@ -1,4 +1,6 @@
 import { Code2, Database, Wrench, Globe } from 'lucide-react';
+import { Seo } from './Seo';
+import { ROUTE_META } from '../site';
 
 export function SkillsPage() {
   const skillCategories = [
@@ -26,6 +28,7 @@ export function SkillsPage() {
 
   return (
     <div className="min-h-screen pt-24 pb-16 px-6">
+      <Seo meta={ROUTE_META.skills} />
       <div className="max-w-6xl mx-auto">
         <div className="space-y-12">
           {/* Header */}

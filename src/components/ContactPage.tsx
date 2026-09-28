@@ -1,5 +1,7 @@
 import { Mail, MapPin, Phone, Send, Github, Linkedin } from 'lucide-react';
 import { useState } from 'react';
+import { Seo } from './Seo';
+import { ROUTE_META } from '../site';
 
 export function ContactPage() {
   const [formData, setFormData] = useState({
@@ -25,6 +27,7 @@ export function ContactPage() {
 
   return (
     <div className="min-h-screen pt-24 pb-16 px-6">
+      <Seo meta={ROUTE_META.contact} />
       <div className="max-w-6xl mx-auto">
         <div className="space-y-12">
           {/* Header */}
@@ -48,7 +51,7 @@ export function ContactPage() {
                       <Mail className="text-purple-400" size={20} />
                     </div>
                     <div>
-                      <p className="text-gray-500">Email</p>
+                      <p className="text-gray-400">Email</p>
                       <p className="text-white">mohithramn@outlook.com</p>
                     </div>
                   </div>
@@ -57,7 +60,7 @@ export function ContactPage() {
                       <Phone className="text-purple-400" size={20} />
                     </div>
                     <div>
-                      <p className="text-gray-500">Phone</p>
+                      <p className="text-gray-400">Phone</p>
                       <p className="text-white">425-588-9636</p>
                     </div>
                   </div>
@@ -66,7 +69,7 @@ export function ContactPage() {
                       <MapPin className="text-purple-400" size={20} />
                     </div>
                     <div>
-                      <p className="text-gray-500">Location</p>
+                      <p className="text-gray-400">Location</p>
                       <p className="text-white">Redmond, WA | Berkeley, CA</p>
                     </div>
                   </div>
@@ -80,23 +83,26 @@ export function ContactPage() {
                     href="https://github.com/mohithna12"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="GitHub profile"
                     className="p-3 bg-purple-600/20 border border-purple-900/30 rounded-lg text-purple-400 hover:bg-purple-600/30 transition-colors"
                   >
-                    <Github size={20} />
+                    <Github size={20} aria-hidden="true" />
                   </a>
                   <a
                     href="https://www.linkedin.com/in/mohith-ram-narendra-babu"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="LinkedIn profile"
                     className="p-3 bg-purple-600/20 border border-purple-900/30 rounded-lg text-purple-400 hover:bg-purple-600/30 transition-colors"
                   >
-                    <Linkedin size={20} />
+                    <Linkedin size={20} aria-hidden="true" />
                   </a>
                   <a
                     href="mailto:mohithramn@outlook.com"
+                    aria-label="Email mohithramn@outlook.com"
                     className="p-3 bg-purple-600/20 border border-purple-900/30 rounded-lg text-purple-400 hover:bg-purple-600/30 transition-colors"
                   >
-                    <Mail size={20} />
+                    <Mail size={20} aria-hidden="true" />
                   </a>
                 </div>
               </div>
@@ -104,6 +110,15 @@ export function ContactPage() {
 
             {/* Contact Form */}
             <div>
+              <noscript>
+                <p className="text-gray-400 mb-4">
+                  This form needs JavaScript. Email{' '}
+                  <a className="text-purple-400" href="mailto:mohithramn@outlook.com">
+                    mohithramn@outlook.com
+                  </a>{' '}
+                  instead.
+                </p>
+              </noscript>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-gray-400 mb-2">
@@ -116,7 +131,7 @@ export function ContactPage() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-black/50 border border-purple-900/30 rounded-lg text-white focus:outline-none focus:border-purple-600 transition-colors"
+                    className="w-full px-4 py-3 bg-black/50 border border-purple-900/30 rounded-lg text-white focus:border-purple-600 transition-colors"
                     placeholder="Your name"
                   />
                 </div>
@@ -131,7 +146,7 @@ export function ContactPage() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-black/50 border border-purple-900/30 rounded-lg text-white focus:outline-none focus:border-purple-600 transition-colors"
+                    className="w-full px-4 py-3 bg-black/50 border border-purple-900/30 rounded-lg text-white focus:border-purple-600 transition-colors"
                     placeholder="your.email@example.com"
                   />
                 </div>
@@ -146,7 +161,7 @@ export function ContactPage() {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 bg-black/50 border border-purple-900/30 rounded-lg text-white focus:outline-none focus:border-purple-600 transition-colors resize-none"
+                    className="w-full px-4 py-3 bg-black/50 border border-purple-900/30 rounded-lg text-white focus:border-purple-600 transition-colors resize-none"
                     placeholder="Your message..."
                   />
                 </div>
@@ -155,7 +170,7 @@ export function ContactPage() {
                   className="w-full px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors flex items-center justify-center gap-2"
                 >
                   Send Message
-                  <Send size={20} />
+                  <Send size={20} aria-hidden="true" />
                 </button>
               </form>
             </div>
