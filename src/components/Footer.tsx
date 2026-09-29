@@ -4,7 +4,7 @@ import { PERSON } from '../site';
 
 export function Footer() {
   return (
-    <footer className="border-t border-hairline">
+    <footer className="relative z-10 border-t border-hairline">
       <Container>
         {/* Dictionary entry */}
         <div data-reveal className="py-20 sm:py-28">

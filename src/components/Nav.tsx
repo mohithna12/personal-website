@@ -10,6 +10,8 @@ const LINKS = [
 export function Nav() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-hairline bg-bg/85 backdrop-blur-sm">
+      {/* Purple sweep along the bottom edge on load. Decorative. */}
+      <span aria-hidden="true" className="nav-progress" />
       <Container className="flex h-14 items-center justify-between gap-3 sm:gap-4">
         <a
           href="#top"

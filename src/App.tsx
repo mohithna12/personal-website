@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Seo } from './components/Seo';
+import { Backdrop } from './components/Backdrop';
 import { Nav } from './components/Nav';
 import { Hero } from './components/Hero';
 import { LogoRow } from './components/LogoRow';
@@ -75,9 +76,11 @@ export default function App() {
         Skip to content
       </a>
 
+      <Backdrop />
+
       <Nav />
 
-      <main>
+      <main className="relative z-10">
         <Hero />
         <Rule />
         <LogoRow />

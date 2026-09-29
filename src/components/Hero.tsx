@@ -20,8 +20,8 @@ export function Hero() {
 
           {/* DRAFT COPY — neutral subline, no career-target statement. */}
           <p className="mt-6 max-w-[560px] text-[15px] leading-[1.7] text-lt sm:text-base">
-            I build web applications end to end, from the interface down to the APIs and data
-            behind them. Currently studying EECS at UC Berkeley.
+            I build software end to end, from the interface down to the APIs and data behind
+            it. Currently studying EECS at UC Berkeley.
           </p>
 
           <ul className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3">

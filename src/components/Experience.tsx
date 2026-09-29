@@ -36,7 +36,7 @@ export function Experience() {
         <div data-reveal>
           <Eyebrow>Where I&apos;ve worked</Eyebrow>
           <h2 className="mt-5 font-sans text-[28px] font-medium leading-[1.15] tracking-[-0.015em] text-fg sm:text-[38px]">
-            Three places, four years of building.
+            Where the work actually happened.
           </h2>
 
           <ol className="mt-12 space-y-12">

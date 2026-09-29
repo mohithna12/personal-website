@@ -190,3 +190,101 @@
 .is-running .step.is-active {
   opacity: 1;
 }
+
+/* ---------------------------------------------------------------------------
+   Nav load bar. A purple line sweeps left to right along the bottom of the
+   navbar on page load. Pure CSS, so it runs with JavaScript disabled too.
+   Carried over from the previous design, restyled to the accent colour.
+   --------------------------------------------------------------------------- */
+@keyframes nav-progress {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+.nav-progress {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  transform-origin: left center;
+  background: linear-gradient(
+    to right,
+    color-mix(in srgb, var(--color-accent) 40%, transparent),
+    var(--color-accent)
+  );
+  animation: nav-progress 1.5s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* No sweep — the bar simply is not drawn. */
+  .nav-progress {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Backdrop: faint purple hairline grid. Around the pointer the grid brightens
+   and a bloom fades in. Fixed behind everything, never interactive. The base
+   grid stands alone with JavaScript off; the pointer layers need it.
+   --------------------------------------------------------------------------- */
+.backdrop-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.backdrop-grid,
+.backdrop-grid-hot {
+  position: absolute;
+  inset: 0;
+  background-size: 64px 64px;
+}
+
+/* Base grid, always on. */
+.backdrop-grid {
+  background-image:
+    linear-gradient(to right, rgba(168, 85, 247, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(168, 85, 247, 0.07) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse 100% 80% at 50% 40%, #000 35%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 100% 80% at 50% 40%, #000 35%, transparent 100%);
+}
+
+/* Brighter copy of the grid, revealed only in a disc around the pointer. */
+.backdrop-grid-hot {
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+  background-image:
+    linear-gradient(to right, rgba(192, 132, 252, 0.42) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(192, 132, 252, 0.42) 1px, transparent 1px);
+  mask-image: radial-gradient(165px circle at var(--gx, 50%) var(--gy, 40%), #000 0%, transparent 72%);
+  -webkit-mask-image: radial-gradient(165px circle at var(--gx, 50%) var(--gy, 40%), #000 0%, transparent 72%);
+}
+
+/* Soft wash under the pointer. */
+.backdrop-glow {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+  background: radial-gradient(
+    320px circle at var(--gx, 50%) var(--gy, 40%),
+    rgba(168, 85, 247, 0.17),
+    transparent 70%
+  );
+}
+
+.backdrop-layer.is-live .backdrop-grid-hot,
+.backdrop-layer.is-live .backdrop-glow {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Keep the static grid, drop everything that tracks the pointer. */
+  .backdrop-grid-hot,
+  .backdrop-glow {
+    display: none;
+  }
+}

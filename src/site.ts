@@ -23,7 +23,7 @@ export const OG_IMAGE = `${SITE_URL}/og.png`;
 
 /** DRAFT COPY — neutral, ~150 chars, no specialization claim. */
 export const DESCRIPTION =
-  'Mohith Ram Narendra Babu is a UC Berkeley EECS student and software engineer who builds full-stack web applications, from interface to backend.';
+  'Mohith Ram Narendra Babu is a UC Berkeley EECS student and software engineer who builds software end to end, from the interface to the APIs and data.';
 
 export const PAGE_META = {
   path: '/',
