@@ -4,6 +4,7 @@ import { PERSON } from '../site';
 const LINKS = [
   { href: PERSON.github, label: 'GitHub', external: true },
   { href: PERSON.linkedin, label: 'LinkedIn', external: true },
+  { href: '/resume.pdf', label: 'Resume', external: true },
   { href: `mailto:${PERSON.email}`, label: PERSON.email, external: false },
 ];
 

@@ -33,6 +33,31 @@ export type Project = {
  */
 export const PROJECTS: Project[] = [
   {
+    id: 'vandal',
+    title: 'Vandal',
+    category: 'AI agent safety',
+    blurb: 'A self-healing guard that stops AI finance agents from being talked into fraud.',
+    whatItDoes:
+      'Sits between an AI finance agent and the money it can move. It searches for attack sequences against a simulated copy of the accounts, synthesizes controls that block them, and re-verifies those controls before they go live.',
+    stack: ['Python', 'FastAPI', 'Next.js', 'Claude API'],
+    decisions: [
+      'Controls synthesized with CEGIS (counterexample-guided inductive synthesis).',
+      'Bounded BFS attack search with state-hash dedup and partial-order reduction.',
+      'Deterministic event-sourced financial twin (integer cents, simulated clock) for exact replay and delta-debugging.',
+    ],
+    results: [
+      'Stopped 40/40 held-out fraud attacks with 0 false blocks.',
+      'Re-verified 34K+ attack sequences.',
+    ],
+    stats: [
+      { value: '40/40', label: 'HELD-OUT ATTACKS STOPPED' },
+      { value: '0', label: 'FALSE BLOCKS' },
+      { value: '34K+', label: 'SEQUENCES RE-VERIFIED' },
+    ],
+    // TODO(mohith): no public repo found for Vandal.
+    repo: null,
+  },
+  {
     id: 'grandflow',
     title: 'GrandFLOW',
     category: 'Senior care platform',
@@ -138,7 +163,7 @@ export const PROJECTS: Project[] = [
       'Strategy backtested against historical games, modelling transaction fees and slippage.',
     ],
     results: [
-      'Ingests 12K+ NFL order-book updates per second.',
+      'Ingests 12K+ NFL order-book updates per second over lock-free async channels.',
       'Surfaces 80+ candidate mispricings per week.',
       '14.7% simulated return across 1,200 historical games.',
     ],
@@ -160,6 +185,7 @@ export const PROJECTS: Project[] = [
     decisions: [
       'GPT-2 implemented in C++17 with zero ML-framework dependencies.',
       'KV caching and multithreaded attention across 8 cores.',
+      'Cache-blocked GEMM kernels for the matrix multiplies.',
       'Automated differential-testing harness against a reference implementation.',
     ],
     results: [
@@ -172,15 +198,14 @@ export const PROJECTS: Project[] = [
       { value: '61%', label: 'LOWER LATENCY' },
       { value: '1e-4', label: 'LOGIT AGREEMENT' },
     ],
-    // TODO(mohith): no repo found — not among your public repos, no local clone.
-    repo: null,
+    repo: 'https://github.com/mohithna12/gpt2-cpp',
   },
 ];
 
 /** Projects featured in the run widget. */
 export const RUN_WIDGET_IDS = ['grandflow', 'cue-bot', 'robotics-telemetry'];
 
-export const COMPANIES = ['AWS', 'Fortinet', 'Maserati', 'CKTH', 'Mustang Math'];
+export const COMPANIES = ['AWS', 'Stellantis', 'Fortinet', 'Maserati', 'CKTH', 'Mustang Math'];
 
 export type Role = {
   title: string;
@@ -201,12 +226,20 @@ export const AWS: Role = {
 
 export const CONTRACT_WORK: Role[] = [
   {
+    title: 'Software Engineer',
+    company: 'Stellantis',
+    location: 'Berkeley, CA',
+    period: 'September 2026 — Present',
+    summary:
+      'Building reservation-gated SSH through OpenSSH AuthorizedKeysCommand, admitting user keys only during active bookings, backed by a PostgreSQL/Prisma reservation engine with transactional conflict checks and waitlists. A systemd heartbeat agent reports load and active users every 30s over outbound-only HTTPS, and a containerized mock bench fleet with an OIDC provider tests SSH, SSO, and 3-tier RBAC end to end across 7 labs.',
+  },
+  {
     title: 'Technical Consultant',
     company: 'Fortinet',
     location: 'Berkeley, CA',
     period: 'August 2026 — Present',
     summary:
-      'Built ranking pipelines scoring 100K+ accounts on funding, hiring, and sector-growth signals, and a monitoring platform on FastAPI, PostgreSQL, and React analytics that cut reporting time 60%.',
+      'Building a ranking pipeline that scores 100K+ accounts on funding, hiring, and sector-growth signals, and a growth-potential model over 20+ behavioral and market features that raised high-growth precision 25%. Parallelized feature computation and scoring to cut batch inference time 70%, and serve model outputs through a FastAPI, PostgreSQL, and React monitoring platform that cut reporting time 60%.',
   },
   {
     title: 'Data Consultant',
@@ -214,7 +247,7 @@ export const CONTRACT_WORK: Role[] = [
     location: 'Berkeley, CA',
     period: 'February 2026 — July 2026',
     summary:
-      'Authored a software-defined ownership strategy for the Folgore EVs, benchmarking 15+ luxury and EV brands and running NLP on 10K+ consumer reviews to cut research time by 40%.',
+      'Built a benchmarking model across 15+ luxury brands to identify EV and pricing gaps for a 5–10 year roadmap, analyzed 10K+ consumer reviews with NLP to quantify innovation-vs-heritage perception gaps, and automated trend dashboards that cut research time 40%.',
   },
   {
     title: 'Software Engineer',
