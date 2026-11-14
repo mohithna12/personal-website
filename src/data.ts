@@ -23,6 +23,8 @@ export type Project = {
   /** Stat strip shown under the run widget. */
   stats: { value: string; label: string }[];
   repo: string | null;
+  /** Deployed demo, if there is one. */
+  demo?: string;
   /** Steps for the run widget. Only projects in the widget need these. */
   steps?: RunStep[];
 };
@@ -56,6 +58,81 @@ export const PROJECTS: Project[] = [
     ],
     // TODO(mohith): no public repo found for Vandal.
     repo: null,
+    demo: 'https://usevandal.vercel.app/',
+    steps: [
+      { label: 'MODEL', detail: 'An event-sourced financial twin replays every account in integer cents on a simulated clock.' },
+      { label: 'ATTACK', detail: 'A bounded BFS searches for fraud sequences, deduped by state hash and partial-order reduction.' },
+      { label: 'SYNTHESISE', detail: 'CEGIS turns each counterexample into a control the agent must pass.' },
+      { label: 'VERIFY', detail: 'The controls are re-verified against 34K+ sequences with exact replay.' },
+      { label: 'OUTPUT', detail: 'The guard stops 40/40 held-out attacks with 0 false blocks.' },
+    ],
+  },
+  {
+    id: 'kalshi',
+    title: 'Kalshi Mispricing Engine',
+    category: 'Market data',
+    blurb: 'Reads live prediction-market prices and flags the ones that look wrong.',
+    whatItDoes:
+      'Follows NFL prediction markets as they move, compares each price against a win probability, and surfaces the ones that have drifted far enough to be worth a look.',
+    stack: ['Rust', 'Tokio', 'WebSockets'],
+    decisions: [
+      'Order-book updates ingested over WebSocket through a concurrent Tokio pipeline.',
+      'Candidates flagged by comparing live prices against win probabilities beyond 2 sigma.',
+      'Strategy backtested against historical games, modelling transaction fees and slippage.',
+    ],
+    results: [
+      'Ingests 12K+ NFL order-book updates per second over lock-free async channels.',
+      'Surfaces 80+ candidate mispricings per week.',
+      '14.7% simulated return across 1,200 historical games.',
+    ],
+    stats: [
+      { value: '12K+/s', label: 'ORDER-BOOK UPDATES' },
+      { value: '80+', label: 'CANDIDATES PER WEEK' },
+      { value: '14.7%', label: 'SIMULATED RETURN' },
+    ],
+    repo: 'https://github.com/mohithna12/kalshi-alpha',
+    demo: 'https://mohithna12.github.io/kalshi-alpha/',
+    steps: [
+      { label: 'INPUT', detail: 'NFL order-book updates stream in over WebSocket, 12K+ per second.' },
+      { label: 'INGEST', detail: 'A concurrent Tokio pipeline fans them out over lock-free async channels.' },
+      { label: 'COMPARE', detail: 'Each live price is checked against a win probability for that game.' },
+      { label: 'FLAG', detail: 'Deviations beyond 2σ become candidate mispricings, 80+ a week.' },
+      { label: 'BACKTEST', detail: 'The strategy returns 14.7% across 1,200 historical games, after fees and slippage.' },
+    ],
+  },
+  {
+    id: 'gpt2',
+    title: 'GPT-2 Inference Engine',
+    category: 'Language models',
+    blurb: 'Runs GPT-2 on a laptop CPU with no ML framework underneath.',
+    whatItDoes:
+      'A from-scratch implementation of GPT-2 text generation in C++, checked against a reference implementation so the outputs can be trusted.',
+    stack: ['C++17', 'Multithreading'],
+    decisions: [
+      'GPT-2 implemented in C++17 with zero ML-framework dependencies.',
+      'KV caching and multithreaded attention across 8 cores.',
+      'Cache-blocked GEMM kernels for the matrix multiplies.',
+      'Automated differential-testing harness against a reference implementation.',
+    ],
+    results: [
+      '42 tokens/second on CPU.',
+      'Per-token latency cut 61%.',
+      'Logits within 1e-4 of HuggingFace outputs across 100 prompts.',
+    ],
+    stats: [
+      { value: '42 tok/s', label: 'ON CPU' },
+      { value: '61%', label: 'LOWER LATENCY' },
+      { value: '1e-4', label: 'LOGIT AGREEMENT' },
+    ],
+    repo: 'https://github.com/mohithna12/gpt2-cpp',
+    demo: 'https://gpt2-cpp-452576367918.us-central1.run.app',
+    steps: [
+      { label: 'INPUT', detail: 'A prompt is tokenised and fed to the model on a plain CPU.' },
+      { label: 'CACHE', detail: 'Keys and values from earlier tokens are cached, so each step only computes the new one.' },
+      { label: 'COMPUTE', detail: 'Cache-blocked GEMM kernels and attention run multithreaded across 8 cores.' },
+      { label: 'VERIFY', detail: 'Logits match HuggingFace within 1e-4 across 100 prompts.' },
+      { label: 'OUTPUT', detail: 'Text generates at 42 tokens per second, 61% lower per-token latency.' },
+    ],
   },
   {
     id: 'grandflow',
@@ -149,61 +226,10 @@ export const PROJECTS: Project[] = [
       { label: 'OUTPUT', detail: 'A failed run is diagnosed in under 1.5 hours instead of roughly 5.' },
     ],
   },
-  {
-    id: 'kalshi',
-    title: 'Kalshi Mispricing Engine',
-    category: 'Market data',
-    blurb: 'Reads live prediction-market prices and flags the ones that look wrong.',
-    whatItDoes:
-      'Follows NFL prediction markets as they move, compares each price against a win probability, and surfaces the ones that have drifted far enough to be worth a look.',
-    stack: ['Rust', 'Tokio', 'WebSockets'],
-    decisions: [
-      'Order-book updates ingested over WebSocket through a concurrent Tokio pipeline.',
-      'Candidates flagged by comparing live prices against win probabilities beyond 2 sigma.',
-      'Strategy backtested against historical games, modelling transaction fees and slippage.',
-    ],
-    results: [
-      'Ingests 12K+ NFL order-book updates per second over lock-free async channels.',
-      'Surfaces 80+ candidate mispricings per week.',
-      '14.7% simulated return across 1,200 historical games.',
-    ],
-    stats: [
-      { value: '12K+/s', label: 'ORDER-BOOK UPDATES' },
-      { value: '80+', label: 'CANDIDATES PER WEEK' },
-      { value: '14.7%', label: 'SIMULATED RETURN' },
-    ],
-    repo: 'https://github.com/mohithna12/kalshi-alpha',
-  },
-  {
-    id: 'gpt2',
-    title: 'GPT-2 Inference Engine',
-    category: 'Language models',
-    blurb: 'Runs GPT-2 on a laptop CPU with no ML framework underneath.',
-    whatItDoes:
-      'A from-scratch implementation of GPT-2 text generation in C++, checked against a reference implementation so the outputs can be trusted.',
-    stack: ['C++17', 'Multithreading'],
-    decisions: [
-      'GPT-2 implemented in C++17 with zero ML-framework dependencies.',
-      'KV caching and multithreaded attention across 8 cores.',
-      'Cache-blocked GEMM kernels for the matrix multiplies.',
-      'Automated differential-testing harness against a reference implementation.',
-    ],
-    results: [
-      '42 tokens/second on CPU.',
-      'Per-token latency cut 61%.',
-      'Logits within 1e-4 of HuggingFace outputs across 100 prompts.',
-    ],
-    stats: [
-      { value: '42 tok/s', label: 'ON CPU' },
-      { value: '61%', label: 'LOWER LATENCY' },
-      { value: '1e-4', label: 'LOGIT AGREEMENT' },
-    ],
-    repo: 'https://github.com/mohithna12/gpt2-cpp',
-  },
 ];
 
 /** Projects featured in the run widget. */
-export const RUN_WIDGET_IDS = ['grandflow', 'cue-bot', 'robotics-telemetry'];
+export const RUN_WIDGET_IDS = ['vandal', 'kalshi', 'gpt2'];
 
 export const COMPANIES = ['AWS', 'Stellantis', 'Fortinet', 'Maserati', 'CKTH', 'Mustang Math'];
 

@@ -87,23 +87,9 @@
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
-/* Run-widget step reveal */
-.step {
-  opacity: 0.25;
-  transition: opacity 0.3s ease-out;
-}
-
-.step.is-active {
-  opacity: 1;
-}
-
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.2; }
-}
-
-.is-running .run-dot {
-  animation: blink 0.8s steps(2, start) infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -117,15 +103,6 @@
     opacity: 1;
     transform: none;
     transition: none;
-  }
-
-  .step {
-    opacity: 1;
-    transition: none;
-  }
-
-  .is-running .run-dot {
-    animation: none;
   }
 
   *,
@@ -158,11 +135,7 @@
 .run-panel {
   display: none;
 }
-.run-widget:has(#proj-grandflow:checked) .run-panel-grandflow,
-.run-widget:has(#proj-cue-bot:checked) .run-panel-cue-bot,
-.run-widget:has(#proj-robotics-telemetry:checked) .run-panel-robotics-telemetry {
-  display: block;
-}
+/* Per-project show rules are generated in RunWidget.tsx from RUN_WIDGET_IDS. */
 
 /* Fallback for browsers without :has() — show the first panel rather than none. */
 @supports not selector(:has(*)) {
@@ -179,16 +152,29 @@
   display: inline-flex;
 }
 
-/* Steps read at full strength by default (and with JS off). They only dim
-   while a run is actually playing. */
-.step {
-  opacity: 1;
+/* Demo frame: faint dot grid behind the idle/boot screen. */
+.demo-screen {
+  background-image: radial-gradient(color-mix(in srgb, var(--color-accent) 18%, transparent) 1px, transparent 1px);
+  background-size: 18px 18px;
 }
-.is-running .step {
-  opacity: 0.25;
+
+@keyframes boot-in {
+  from { opacity: 0; transform: translateX(-6px); }
+  to { opacity: 1; transform: none; }
 }
-.is-running .step.is-active {
-  opacity: 1;
+.boot-line {
+  animation: boot-in 0.25s ease-out both;
+}
+
+.cursor-blink {
+  animation: blink 0.8s steps(2, start) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boot-line,
+  .cursor-blink {
+    animation: none;
+  }
 }
 
 /* ---------------------------------------------------------------------------
